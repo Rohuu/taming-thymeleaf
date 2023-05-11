@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Taming Thymeleaf</title>
+    <link rel="stylesheet" th:href="@{/css/application.css}">
+    <h1>Project Thymeleaf</h1>
+    <h1 th:text="${pageTitle}" class="text-4xl mx-4 mb-4 border-b-4 border-green-700">Taming Thymeleaf</h1>
+    <div>This is a thymeleaf page new njvkljkvnbnln kghklj;jhgjhbnkjhgflkjhgbnjhgbnhgvbnmvcv one.....</div>
+    <div>
+        <ul>
+            <li th:each="scientist: ${scientists}">
+                <span th:text="${scientist}"></span>
+            </li>
+        </ul>
+    </div>
+</head>
+</html>
