@@ -13,15 +13,7 @@ public class RootController {
 
     @GetMapping("/index")
     public String index(Model model){
-        model.addAttribute("pageTitle","Random_Title");
-        model.addAttribute("scientists", List.of("Shubham Singh","Pulkit","Rohit","Sachin"));
         return "index";
-    }
-
-    // handler for service fragment
-    @GetMapping("/service")
-    public String serviceHandler(Model model){
-        return "service";
     }
 
     @GetMapping("/footer")
