@@ -11,10 +11,9 @@ public class TamingThymeleafApplicationConfiguration {
     @Bean
     public ITemplateResolver svgTemplateResolver() {
         SpringResourceTemplateResolver resolver = new SpringResourceTemplateResolver();
-        resolver.setPrefix("classpath:/templates/img/");
+        resolver.setPrefix("classpath:/templates/svg/");
         resolver.setSuffix(".svg");
         resolver.setTemplateMode("XML");
         return resolver;
     }
 }
-
