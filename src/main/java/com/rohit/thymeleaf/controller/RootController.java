@@ -2,13 +2,11 @@ package com.rohit.thymeleaf.controller;
 
 import com.rohit.thymeleaf.model.Team;
 import com.rohit.thymeleaf.service.TeamService;
+import jakarta.persistence.PostRemove;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.SortedSet;
@@ -40,6 +38,9 @@ public class RootController {
         List<Team> iplTeams = teamService.getAllTeams();
         model.addAttribute("teams", iplTeams);
         return "index";
+//        By using redirect: in the returned String, we instruct Spring to redirect to another page after the
+//        POST. This is a pattern called Post/Redirect/Get that is used a lot in web development. By
+//        redirecting, you avoid that the POST could be submitted twice if the user would refresh
     }
 
     @GetMapping("/teams/{name}")
@@ -48,5 +49,25 @@ public class RootController {
     // serialized into JSON and passed back into the HttpResponse object.
     public int getTotalWinningsByName(@PathVariable("name") String name) {
         return teamService.getTotalWins(name);
+    }
+
+    @PostMapping("/add")
+    public void addTeam(Team team){
+        teamService.addTeam(team);
+    }
+
+    @PostMapping("/delete")
+    public void deleteTeam(Team team){
+        teamService.deleteTeam(team);
+    }
+
+    @PostMapping("/findAll")
+    public void findAllTeams(){
+        teamService.findAllTeams();
+    }
+
+    @PostMapping("/update")
+    public void updateTeam(Team team){
+        teamService.updateTeam(team);
     }
 }

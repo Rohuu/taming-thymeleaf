@@ -1,6 +1,12 @@
 package com.rohit.thymeleaf.model;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+
+@Entity
 public class Team {
+    @Id
+    int id;
     String name;
     int totalWinnings;
 
@@ -11,9 +17,18 @@ public class Team {
         this.name = name;
     }
 
-    public Team(String name, int totalWinnings) {
+    public Team(int id,String name, int totalWinnings) {
+        this.id=id;
         this.name = name;
         this.totalWinnings = totalWinnings;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {

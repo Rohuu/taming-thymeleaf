@@ -1,6 +1,7 @@
 package com.rohit.thymeleaf.service;
 
 import com.rohit.thymeleaf.model.Team;
+import com.rohit.thymeleaf.repository.TeamRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,16 +12,19 @@ import java.util.List;
 @Service
 public class TeamService {
 
+    @Autowired
+    private TeamRepository teamRepository;
+
     public List<Team> getAllTeams(){
         List<Team> allTeams =new ArrayList<>();
-        allTeams.add(new Team("MI",2));
-        allTeams.add(new Team("CSK",3));
-        allTeams.add(new Team("RCB",0));
-        allTeams.add(new Team("LG",0));
-        allTeams.add(new Team("GT",1));
-        allTeams.add(new Team("SRH",0));
-        allTeams.add(new Team("DD",1));
-        allTeams.add(new Team("RR",1));
+        allTeams.add(new Team(100,"MI",2));
+        allTeams.add(new Team(101,"CSK",3));
+        allTeams.add(new Team(102,"RCB",0));
+        allTeams.add(new Team(103,"LG",0));
+        allTeams.add(new Team(104,"GT",1));
+        allTeams.add(new Team(105,"SRH",0));
+        allTeams.add(new Team(106,"DD",1));
+        allTeams.add(new Team(107,"RR",1));
         return allTeams;
     }
 
@@ -33,4 +37,21 @@ public class TeamService {
         }
         return -1;
     }
+
+    public void addTeam(Team team){
+        teamRepository.save(team);
+    }
+
+    public void deleteTeam(Team team){
+        teamRepository.delete(team);
+    }
+
+    public void updateTeam(Team team){
+        teamRepository.save(team);
+    }
+
+    public void findAllTeams(){
+        teamRepository.findAll();
+    }
+
 }
