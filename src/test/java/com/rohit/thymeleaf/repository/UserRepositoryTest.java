@@ -1,6 +1,6 @@
 package com.rohit.thymeleaf.repository;
 
-import com.rohit.thymeleaf.model.User;
+import com.rohit.thymeleaf.model.*;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import org.junit.jupiter.api.BeforeEach;
@@ -10,6 +10,8 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.jdbc.core.JdbcTemplate;
 
+import java.time.LocalDate;
+import java.time.Month;
 import java.util.UUID;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -37,11 +39,28 @@ class UserRepositoryTest {
 
     @Test
     void testSaveUser() {
-        User user = new User();
+        UUID id = UUID.randomUUID();
+        User user = new User(id, new UserName("Rohit", "Bhandari"), Gender.MALE, LocalDate.of(1997, Month.FEBRUARY, 21), new Email("rohuu99022@gmail.com"), new PhoneNumber("1234567890"));
+
         repository.save(user);
         entityManager.flush();
-        UUID idInDb = jdbcTemplate.queryForObject("SELECT id FROM users", UUID.class);
 
-        assertThat(idInDb).isEqualTo(user.getId());
+        String fName=jdbcTemplate.queryForObject("select first_name from users",String.class);
+        assertThat(fName).isEqualTo(user.getUserName().getFirstName());
+
+        String lName=jdbcTemplate.queryForObject("select last_name from users",String.class);
+        assertThat(lName).isEqualTo(user.getUserName().getLastName());
+
+        Gender gender=jdbcTemplate.queryForObject("select gender from users",Gender.class);
+        assertThat(gender).isEqualTo(user.getGender());
+
+        LocalDate date=jdbcTemplate.queryForObject("select birthday from users",LocalDate.class);
+        assertThat(date).isEqualTo(user.getBirthday());
+
+        Email email=jdbcTemplate.queryForObject("select email from users",Email.class);
+        assertThat(email).isEqualTo(user.getEmail());
+
+        PhoneNumber phoneNumber=jdbcTemplate.queryForObject("select phone_number from users",PhoneNumber.class);
+        assertThat(phoneNumber).isEqualTo(user.getPhoneNumber());
     }
 }
