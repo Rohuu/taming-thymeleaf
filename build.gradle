@@ -31,7 +31,7 @@ dependencies {
 	testImplementation group: 'com.h2database', name: 'h2', version: '2.1.214'
 	implementation group: 'nz.net.ultraq.thymeleaf', name: 'thymeleaf-layout-dialect', version: '3.2.1'
 	implementation group: 'org.flywaydb', name: 'flyway-core', version: '9.18.0'
-//	implementation group: 'com.google.guava', name: 'guava', version: '19.0'
+	implementation group: 'com.google.guava', name: 'guava', version: '19.0'
 	implementation group: 'com.github.javafaker', name: 'javafaker', version: '1.0.2'
 }
 

@@ -1,5 +1,6 @@
 package com.rohit.thymeleaf.model;
 
+import com.github.javafaker.Faker;
 import lombok.Data;
 
 @Data

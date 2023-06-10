@@ -40,7 +40,7 @@ public class Controller {
 //        redirecting, you avoid that the POST could be submitted twice if the user would refresh
     }
 
-    @GetMapping("/allTeams/{name}")
+    @GetMapping({"/allTeams/{name}","/allTeam/{name}"})
     @ResponseBody
     //The @ResponseBody annotation tells a controller that the object returned is automatically
     // serialized into JSON and passed back into the HttpResponse object.
