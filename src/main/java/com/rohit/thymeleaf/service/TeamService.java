@@ -5,7 +5,6 @@ import com.rohit.thymeleaf.repository.TeamRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.text.AttributedString;
 import java.util.ArrayList;
 import java.util.List;
 

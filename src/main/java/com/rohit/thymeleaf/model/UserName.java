@@ -13,4 +13,7 @@ public class UserName {
     String firstName;
     String lastName;
 
+    public String getFullName() {
+        return String.format("%s %s", firstName, lastName);
+    }
 }
