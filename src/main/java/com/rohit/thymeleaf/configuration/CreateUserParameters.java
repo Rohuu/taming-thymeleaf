@@ -1,9 +1,6 @@
 package com.rohit.thymeleaf.configuration;
 
-import com.rohit.thymeleaf.model.Email;
-import com.rohit.thymeleaf.model.Gender;
-import com.rohit.thymeleaf.model.PhoneNumber;
-import com.rohit.thymeleaf.model.UserName;
+import com.rohit.thymeleaf.model.*;
 import lombok.Data;
 
 import java.time.LocalDate;
@@ -22,5 +19,13 @@ public class CreateUserParameters {
         this.birthday = birthday;
         this.email = email;
         this.phoneNumber = phoneNumber;
+    }
+
+    public void update(User user) {
+        user.setUserName(getUserName());
+        user.setGender(getGender());
+        user.setBirthday(getBirthday());
+        user.setEmail(getEmail());
+        user.setPhoneNumber(getPhoneNumber());
     }
 }
