@@ -10,6 +10,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 import java.nio.file.attribute.UserPrincipalNotFoundException;
 import java.util.List;
 import java.util.UUID;
@@ -68,6 +70,14 @@ public class UserController {
             return "user/edit";
         }
         userService.editUser(id,editUserFormData.toParameters());
+        return "redirect:/users";
+    }
+
+    @PostMapping("/{id}/delete")
+    public String doDeleteUser(@PathVariable UUID id, RedirectAttributes redirectAttributes){
+        User user=userService.getUser(id).orElseThrow(()-> new UserNotFoundException(id));
+        userService.delete(id);
+        redirectAttributes.addFlashAttribute("deletedUserName",user.getUserName().getFullName());
         return "redirect:/users";
     }
 }

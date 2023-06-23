@@ -17,4 +17,6 @@ public interface UserService {
     User editUser(UUID id, EditUserParameters editUserParameters) throws UserPrincipalNotFoundException;
 
     Optional<User> getUser(UUID id);
+
+    void delete(UUID id);
 }
